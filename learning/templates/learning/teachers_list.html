@@ -1,0 +1,18 @@
+{% extends 'learning/base.html' %}
+{% block title %}
+    Teachers
+{% endblock %}
+{% block body %}
+    <h1>Teachers Zone</h1>
+    <ul>
+        {% for teacher in teachers %}
+        <li><a href="{% url 'learning:teacher_detail' pk=teacher.pk %}"> {{teacher.teacher_name}}</a></li>
+        {%endfor%}
+    </ul>
+    <div>
+        
+    </div>
+<div>
+    <a href="{% url 'learning:index' %}">Back to Learning Zone</a>
+</div>
+{% endblock %}

@@ -3,13 +3,16 @@ import datetime
 
 class Course(models.Model):
     course_name = models.CharField(max_length=100, blank=False)
-
+    description = models.TextField(blank=True, null=True)
+    peirod_month = models.IntegerField(blank=True, null=True)
+    course_for = models.TextField(blank=True, null=True)
     def __str__(self):
         return self.course_name
 
 
 class Teacher(models.Model):
     teacher_name = models.CharField(max_length=255)
+    about_self = models.TextField(blank=True, null=True)
     email = models.EmailField(max_length=254, unique=True, verbose_name='Teacher Email Address')
     birth_date = models.DateField(datetime.date(2024, 1, 1))
 

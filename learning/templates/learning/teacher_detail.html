@@ -1,0 +1,16 @@
+{% extends 'learning/base.html'%}
+{%block title %}
+    Teacher {{ teacher.name }}
+{% endblock %}
+
+{% block body %}
+<h1> Teacher {{teacher.teacher_name}} </h1>
+<p>
+    <strong>Email:</strong>
+    {{teacher.email}}
+</p>
+<div>
+    <a href="{% url 'learning:teachers_list' %}">Back to Learning Zone</a>
+</div>
+{%endblock%}
+
