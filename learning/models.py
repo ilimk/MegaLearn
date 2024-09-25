@@ -1,6 +1,7 @@
 from django.db import models
 import datetime
 
+
 class Course(models.Model):
     course_name = models.CharField(max_length=100, blank=False)
     description = models.TextField(blank=True, null=True)
@@ -14,7 +15,7 @@ class Teacher(models.Model):
     teacher_name = models.CharField(max_length=255)
     about_self = models.TextField(blank=True, null=True)
     email = models.EmailField(max_length=254, unique=True, verbose_name='Teacher Email Address')
-    birth_date = models.DateField(datetime.date(2024, 1, 1))
+    birth_date = models.DateField()
 
     def __str__(self):
         return self.teacher_name
@@ -43,5 +44,5 @@ class Group(models.Model):
     name = models.CharField(max_length=255)
     teachers = models.ManyToManyField(Teacher)
     students = models.ManyToManyField(Student)
-    start_date = models.DateField(default=datetime.datetime.today(), blank=False, null=False)
-    end_date = models.DateField(blank=True, null=True)
+    start_date = models.DateTimeField(default=datetime.datetime.today(), blank=False, null=False)
+    end_date = models.DateTimeField(blank=True, null=True)
