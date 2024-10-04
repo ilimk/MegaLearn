@@ -1,24 +1,11 @@
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
-
-from learning.models import Teacher, Student
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, View
+from .forms import CourseForm
+from .models import Teacher, Student, Course
 
 
 class IndexView(TemplateView):
     template_name = "learning/index.html"
-
-
-# class TeachersView(TemplateView):
-#     template_name = 'learning/teachers_list.html'
-#
-#     extra_context = {
-#         'pi':3.1415,
-#     }
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context.update(
-#             teachers=Teacher.objects.all(),
-#         )
-#         return context
 
 class TeachersListView(ListView):
     model = Teacher
@@ -44,3 +31,11 @@ class StudentDetailView(DetailView):
 class StudentCreateView(CreateView):
     model = Student
     template_name = 'learning/student_create.html'
+
+
+class CourseCreateView(CreateView):
+    template_name = "learning/course-create.html"
+    model = Course
+    form_class = CourseForm
+    success_url = reverse_lazy("learning:teachers_list")
+
