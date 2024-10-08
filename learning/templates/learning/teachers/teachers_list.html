@@ -4,6 +4,7 @@
 {% endblock %}
 {% block body %}
     <h1>Teachers Zone</h1>
+    <a href="{% url 'learning:teacher_add' %}">Teacher Add</a>
     <ul>
         {% for teacher in teachers %}
         <li><a href="{% url 'learning:teacher_detail' pk=teacher.pk %}"> {{teacher.teacher_name}}</a></li>

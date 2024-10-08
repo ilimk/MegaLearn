@@ -1,0 +1,14 @@
+{% extends 'learning/base.html' %}
+{% block title %}
+    Student
+{% endblock %}
+
+{% block body %}
+    Student Name :{{ student.student_name }}
+    Student Email: {{ student.email }}
+    Student birth_date : {{ student.birth_date }}
+<div>
+    {% include 'learning/components/back-to-students.html' %}
+</div>
+
+{% endblock %}

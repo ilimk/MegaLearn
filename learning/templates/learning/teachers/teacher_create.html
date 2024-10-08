@@ -1,0 +1,12 @@
+{% extends 'learning/base.html' %}
+{% block title %}
+    Создание учителя
+{% endblock %}
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+{% include 'learning/components/back-to-teachers.html' %}
+{% endblock %}

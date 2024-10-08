@@ -1,0 +1,17 @@
+{% extends 'learning/base.html' %} 
+ 
+{% block title %} 
+Создание курса 
+{% endblock %} 
+ 
+{% block body %} 
+<h1>Создание курса</h1> 
+ 
+<form method="post"> 
+    {% csrf_token %} 
+ 
+    {{ form.as_ul }} 
+    <input type="submit" value="Add"> 
+</form> 
+    {% include 'learning/components/back-to-learning.html' %}
+{% endblock %}

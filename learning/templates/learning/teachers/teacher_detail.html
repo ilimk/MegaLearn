@@ -1,4 +1,4 @@
-{% extends 'learning/base.html'%}
+{% extends 'learning/base.html' %}
 {%block title %}
     Teacher {{ teacher.name }}
 {% endblock %}
@@ -9,8 +9,6 @@
     <strong>Email:</strong>
     {{teacher.email}}
 </p>
-<div>
-    <a href="{% url 'learning:teachers_list' %}">Back to Learning Zone</a>
-</div>
+{% include 'learning/components/back-to-teachers.html' %}
 {%endblock%}
 

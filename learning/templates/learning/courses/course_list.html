@@ -1,0 +1,20 @@
+{% extends 'learning/base.html' %}
+
+{% block title %}
+    Course List
+{% endblock %}
+
+{% block body %}
+    <h1>Courses</h1>
+    <div>
+        <a href="{% url 'learning:course-create' %}">Course Create</a>
+    </div>
+    <ul>
+        {% for course in courses %}
+        <li>
+            <a href="{% url 'learning:course_detail' pk=course.pk  %}"> {{ course.course_name }} </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% include 'learning/components/back-to-learning.html' %}
+{% endblock %}

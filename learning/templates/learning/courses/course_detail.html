@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    Course Detail
+{% endblock %}
+{% block body %}
+    <h1> Course Name : {{ course.course_name }} </h1>
+
+    <b>{{ course.description }}</b>
+    <b>{{ course.peirod_month }}</b>
+    <b>{{ course.course_for }}</b>
+<br>
+<div>
+    {% include 'learning/components/back-to-courses.html' %}
+</div>
+{% endblock %}
