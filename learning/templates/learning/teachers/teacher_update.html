@@ -1,0 +1,13 @@
+{% extends 'learning/base.html' %}
+{% block title %}
+    Изменение учителя
+{% endblock %}
+{% block body %}
+  <h1>Изменение данных {{ teacher.teacher_name }} </h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update">
+    </form>
+{% include 'learning/components/back-to-teachers.html' %}
+{% endblock %}
