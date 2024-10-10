@@ -1,15 +1,17 @@
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, DeleteView, UpdateView
 
-from learning.forms import CourseForm, StudentForm, TeacherForm
-from learning.models import Teacher, Student, Course
+from .forms import CourseForm, StudentForm, TeacherForm
+from .models import Teacher, Student, Course
 
 
 class IndexView(TemplateView):
     template_name = "learning/index.html"
 
 class TeachersListView(ListView):
-    model = Teacher
+    # model = Teacher
+    queryset = Teacher.objects.filter(archived=False).all()
     template_name = 'learning/teachers/teachers_list.html'
     context_object_name = 'teachers'
 
@@ -23,8 +25,26 @@ class TeacherCreateView(CreateView):
     template_name = 'learning/teachers/teacher_create.html'
     form_class = TeacherForm
 
-    def get_success_url(self):
-        return reverse('learning:teacher_detail', kwargs={'pk': self.object.pk})
+    # def get_success_url(self):
+    #     return reverse('learning:teacher_detail', kwargs={'pk': self.object.pk})
+
+class TeacherDeleteView(DeleteView):
+    model = Teacher
+    template_name = 'learning/teachers/teacher_confirm_delete.html'
+    context_object_name = 'teacher'
+    success_url = reverse_lazy('learning:teachers_list')
+
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object.archived = True
+        self.object.save()
+        return HttpResponseRedirect(success_url)
+
+class TeacherUpdateView(UpdateView):
+    model = Teacher
+    template_name = 'learning/teachers/teacher_update.html'
+    form_class = TeacherForm
+
 
 class StudentListView(ListView):
     model = Student
