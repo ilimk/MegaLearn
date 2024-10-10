@@ -8,10 +8,14 @@ from .views import (
         TeacherUpdateView,
         StudentListView,
         StudentDetailView,
+        StudentCreateView,
+        StudentDeleteView,
+        StudentUpdateView,
         CourseCreateView,
         CourseDetailView,
         CourseListView,
-        StudentCreateView,
+        CourseDeleteView,
+        CourseUpdateView,
 )
 
 app_name = 'learning'
@@ -28,7 +32,11 @@ urlpatterns = [
     path("students_list/", StudentListView.as_view(), name='students_list'),
     path("student_detail/<int:pk>", StudentDetailView.as_view(), name='student_detail'),
     path("student/add/", StudentCreateView.as_view(), name='student_add'),
+    path('student/<int:pk>/confirm-delete/', StudentDeleteView.as_view(), name='student-confirm-delete'),
+    path('student/<int:pk>/edit/', StudentUpdateView.as_view(), name='student-edit'),
     path("course-list/", CourseListView.as_view(), name='course_list'),
     path("course_detail/<int:pk>", CourseDetailView.as_view(), name='course_detail'),
     path('course/add/', CourseCreateView.as_view(), name='course-create'),
+    path('course/<int:pk>/confirm-delete/', CourseDeleteView.as_view(), name='course-confirm-delete'),
+    path('course/<int:pk>/edit/', CourseUpdateView.as_view(), name='course-edit'),
 ]

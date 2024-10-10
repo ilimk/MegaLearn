@@ -13,6 +13,8 @@
         {% for course in courses %}
         <li>
             <a href="{% url 'learning:course_detail' pk=course.pk  %}"> {{ course.course_name }} </a>
+            <a href="{% url 'learning:course-edit' pk=course.pk%}">Изменить</a>
+            <a href="{% url 'learning:course-confirm-delete' pk=course.pk%}">Удалить</a>
         </li>
         {% endfor %}
     </ul>

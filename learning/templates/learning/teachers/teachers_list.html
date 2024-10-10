@@ -7,7 +7,11 @@
     <a href="{% url 'learning:teacher_add' %}">Teacher Add</a>
     <ul>
         {% for teacher in teachers %}
-        <li><a href="{% url 'learning:teacher_detail' pk=teacher.pk %}"> {{teacher.teacher_name}}</a></li>
+        <li>
+            <a href="{% url 'learning:teacher_detail' pk=teacher.pk %}"> {{teacher.teacher_name}}</a>
+            <a href="{% url 'learning:teacher-edit' pk=teacher.pk %}" class="btn">Изменить</a>
+            <a href="{% url 'learning:teacher-confirm-delete' pk=teacher.pk %}" class="btn">Удалить</a>
+        </li>
         {%endfor%}
     </ul>
     <div>

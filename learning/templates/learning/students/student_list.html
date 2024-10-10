@@ -1,19 +1,24 @@
 {% extends 'learning/base.html' %}
 
+{% load static %}
 {% block title %}
     Student Lists
 {%endblock%}
 
 {% block body%}
     <h1>Studends</h1>
-
+    <link rel="stylesheet" href="{% static 'learning/css/styles.css' %}">
     <div>
         <a href="{% url 'learning:student_add' %}"> Add Student</a>
     </div>
 
     <ul>
         {%for student in students %}
-        <li> <a href="{% url 'learning:student_detail' pk=student.pk %}"> {{ student.student_name }}</a></li>
+        <li>
+        <a href="{% url 'learning:student_detail' pk=student.pk %}"> {{ student.student_name }}</a>
+        <a href="{% url 'learning:student-edit' pk=student.pk %}">Изменить</a>
+        <a href="{% url 'learning:student-confirm-delete' pk=student.pk %}" class="btn">Удалить</a>
+        </li>
         {% endfor %}
     </ul>
 {% include 'learning/components/back-to-learning.html' %}

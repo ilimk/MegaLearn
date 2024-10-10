@@ -1,0 +1,18 @@
+{% extends 'learning/base.html' %}
+{% block title %}
+    Изменение студента
+{% endblock %}
+{% block body %}
+  <h1>Изменение данных {{ student.student_name }} </h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+         {% if form.birth_date.errors %}
+
+                {{ form.birth_date.errors }}
+
+        {% endif %}
+        <input type="submit" value="Update">
+    </form>
+{% include 'learning/components/back-to-students.html' %}
+{% endblock %}

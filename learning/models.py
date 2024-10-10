@@ -14,6 +14,8 @@ class Course(models.Model):
     def __str__(self):
         return self.course_name
 
+    def get_absolute_url(self):
+       return reverse('learning:course_detail', kwargs={"pk": self.pk})
 
 class Teacher(models.Model):
     teacher_name = models.CharField(max_length=255)
@@ -31,12 +33,14 @@ class Teacher(models.Model):
 class Student(models.Model):
     student_name = models.CharField(max_length=255, blank=False)
     email = models.EmailField(max_length=254, unique=True, verbose_name='Student Email Address')
-    birth_date = models.DateField(blank=True)
+    birth_date = models.DateField()
     archived = models.BooleanField(default=False)
 
     def __str__(self):
         return self.student_name
 
+    def get_absolute_url(self):
+       return reverse('learning:teacher_detail', kwargs={"pk": self.pk})
 
 class TeacherCourse(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
