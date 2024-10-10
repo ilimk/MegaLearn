@@ -11,8 +11,8 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = "pk", "teacher_name", "email"
-    list_display_links = "pk", "teacher_name", "email"
+    list_display = "pk", "archived", "teacher_name", "email"
+    list_display_links = "pk", "teacher_name"
 
 
 @admin.register(Student)
@@ -36,3 +36,4 @@ class GroupAdmin(admin.ModelAdmin):
     def teacher_list(self, obj: Group) -> str:
         teachers = obj.teachers.all()
         return ", ".join(c.teacher_name for c in teachers)
+
